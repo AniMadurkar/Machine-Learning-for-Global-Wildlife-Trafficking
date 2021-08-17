@@ -1,8 +1,5 @@
 import pandas as pd
 import numpy as np
-import sql
-from sqlalchemy import create_engine
-
 
 def main():
 
@@ -16,8 +13,6 @@ def main():
     #Reading Lemis files in
     print(f'Reading in lemis file...')
     lemis = pd.read_csv('Lemis Data/lemis_2000_2014_cleaned.csv', dtype=dtypes)
-    #Sampling 50% of lemis data
-    # lemis = lemis.sample(frac=.5)
     codes = pd.read_csv('Lemis Data/lemis_codes.csv')
 
     print(f'Cleaning lemis file...')
@@ -89,10 +84,10 @@ def main():
     lemis['volume (teu)'] = lemis['cubic meters']/38.5
 
     print(f'Writing lemis file...')
-    # engine = create_engine(r'postgresql://postgres:madsdata@localhost:5432/postgres')
-    # lemis.to_sql('lemis', con=engine, if_exists='replace')
-    lemis.to_csv('lemis_cleaned.csv')
-    # sql.write_frame(df, 'table_name', con, flavor='postgresql')
+    #Getting 1% of the data to write to file. Comment out next two lines and uncomment last line if not needed
+    lemis_sample = lemis.sample(frac=.01)
+    lemis_sample.to_csv('lemis_cleaned_sample.csv')
+#     lemis.to_csv('lemis_cleaned.csv')
 
 if __name__ == '__main__':
     main()
