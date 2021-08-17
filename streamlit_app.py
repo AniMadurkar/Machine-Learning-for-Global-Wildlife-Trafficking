@@ -418,7 +418,7 @@ def main():
             else:
                 palette = 'Blues_r'
 
-            fig, ax = plt.subplots(figsize=(6,8))
+            fig, ax = plt.subplots()
             plt.rcParams.update({'font.size': 10})
             ax = sns.barplot(y='Attribute', x='Importance', data=filtered_importances, palette=palette)
             ax.set(ylabel='')
