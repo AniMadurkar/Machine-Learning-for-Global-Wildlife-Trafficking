@@ -120,9 +120,10 @@ def main():
     panjiva.columns= panjiva.columns.str.lower()
 
     print(f'Writing panjiva file...')
-    # panjiva_sample = panjiva.sample(frac=.01)
-    # panjiva_sample.to_excel('panjiva_sample_cleaned (small).xlsx')
-    panjiva.to_csv('panjiva_cleaned.csv')
+    #Getting 1% of the data to write to file. Comment out next two lines and uncomment last line if not needed
+    panjiva_sample = panjiva.sample(frac=.01)
+    panjiva_sample.to_csv('panjiva_cleaned_sample.csv')
+#     panjiva.to_csv('panjiva_cleaned.csv')
 
 if __name__ == '__main__':
     main()
