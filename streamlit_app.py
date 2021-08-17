@@ -813,7 +813,7 @@ def main():
 
         st.markdown("This [data set](https://data.nal.usda.gov/dataset/data-united-states-wildlife-and-wildlife-product-imports-2000%E2%80%932014) \
                     includes data on 15 years of the importation of wildlife and their derived products into the United States (2000–2014), \
-                    originally collected by the United States Fish and Wildlife Service."
+                    originally collected by the United States Fish and Wildlife Service. "
                     "The data used in this application is only about 1% (total, before filtering to some percentage of training data) of all data available \
                     due to Github and Streamlit size limitations.")
 
@@ -1044,7 +1044,7 @@ def main():
                     elbowPlot('KPrototypes', panjiva_engineered_subset, elbow_clusters)
 
         st.markdown("This data set was manually downloaded through a paid [Panjiva](https://panjiva.com/) account \
-                    and it includes data for imported shipments (2007-2021) related to wildlife for HS codes 01, 02, 03, 04, and 05 as these represent animals & animal products."
+                    and it includes data for imported shipments (2007-2021) related to wildlife for HS codes 01, 02, 03, 04, and 05 as these represent animals & animal products. "
                     "The data used in this application is only about 1% (total, before filtering to some percentage of training data) of all data available \
                     due to Github and Streamlit size limitations.")
 
