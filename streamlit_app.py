@@ -18,7 +18,6 @@ import os
 #P
 import pandas as pd
 import pickle
-import pycountry
 #R
 import re
 import random
@@ -1010,12 +1009,6 @@ def main():
                     elbowPlot('KPrototypes', panjiva_engineered_subset)
 
 
-        # row =50 #this is the row selected to see what is similar
-        # num = 10 #this is the number of similar packages you are looking for
-        # dist_count, ind_count = goods_count_nn.kneighbors(goods_cv[row,:], n_neighbors=num)
-        # dist_tfidf, ind_tfidf = goods_tfidf_nn.kneighbors(goods_tfidf[row,:], n_neighbors=num)
-        # panjiva_engineered_subset['goods shipped'].iloc[list(ind_count[0])]
-        # panjiva_engineered_subset['goods shipped'].iloc[list(ind_tfidf[0])]
 
 
 if __name__ == '__main__':
