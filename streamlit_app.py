@@ -2,6 +2,8 @@
 #C
 from collections import Counter
 import copy
+#E
+import en_core_web_sm
 #I
 from imblearn.over_sampling import SMOTE
 #K
@@ -814,7 +816,7 @@ def main():
         #Top title on the sidebar
         st.sidebar.title("Clustering Shipments from Panjiva")
 
-        nlp = spacy.load("en_core_web_sm")
+        nlp = en_core_web_sm.load()
         stop_words = spacy.lang.en.stop_words.STOP_WORDS
         punctuations = string.punctuation
         parser = English()
