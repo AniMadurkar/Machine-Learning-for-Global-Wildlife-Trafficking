@@ -24,6 +24,7 @@ import random
 #S
 import seaborn as sns
 from scipy.stats.mstats import winsorize
+from sklearn import cluster
 from sklearn.cluster import KMeans
 from sklearn.compose import ColumnTransformer
 from sklearn.decomposition import TruncatedSVD
@@ -919,6 +920,26 @@ def main():
                 ax.set(xlabel='Values of K', ylabel='Inertia', title='The Elbow Method using Inertia')
                 st.pyplot(fig)
 
+        #helper function
+        def black_color_func(word, font_size, position,orientation,random_state=None, **kwargs):
+            return("hsl(0,100%, 1%)")
+
+        def plotWordcloud(tokenized_goods):
+
+            #could loop through this, but not really needed
+            w = WordCloud(width=800,height=600,mode='RGBA',background_color='white',max_words=50
+                            ).generate(' '.join(tokenized_goods.sum()))
+
+            # set the word color to black
+            w.recolor(color_func=black_color_func)
+            # set the figsize
+            fig, ax = plt.subplots(figsize=(12,10))
+            # plot the wordcloud
+            ax.imshow(w, interpolation="bilinear")
+            # remove plot axes
+            ax.axis("off")
+            st.pyplot(fig)
+
         panjiva_engineered, goods_shipped = clusteringPipeline()
 
         st.sidebar.subheader("Percentage of Training Data to Train Model(s) On")
@@ -940,7 +961,8 @@ def main():
             elbow_plot_view = st.sidebar.checkbox("Elbow Plot", False, key="elbow_plot")
             if elbow_plot_view:
                 elbow_clusters = st.sidebar.slider("The number of clusters to try out", 1,100, step=1, key="elbow_clusters")
-            # st.sidebar.subheader("Additional Options")
+            st.sidebar.subheader("Additional Options")
+            wordcloud_option = st.sidebar.checkbox("WordCloud for a Cluster", False, key="wordcloud")
 
             if st.sidebar.button("Run Model", key='run'):
                 st.subheader("KMeans Clustering Results")
@@ -964,6 +986,12 @@ def main():
                         if elbow_plot_view:
                             elbowPlot('KMeans', goods_cv, elbow_clusters)
                 
+                        if wordcloud_option:
+                            panjiva_engineered_subset['count_tokenized_goods'] = goods_shipped_subset.apply(lambda x :spacy_tokenizer(x)) #tokenize the strings
+                            cluster = random.randint(0, n_clusters)
+                            panjiva_engineered_subset_filtered = panjiva_engineered_subset[panjiva_engineered_subset["cluster_countvect"] == cluster]
+                            plotWordcloud(panjiva_engineered_subset_filtered.count_tokenized_goods)
+
                 if "TfidfVectorizer" in vectorizer:
                     with col2:
                         st.write("Results with TfidfVectorizer:")
@@ -979,6 +1007,13 @@ def main():
 
                         if elbow_plot_view:
                             elbowPlot('KMeans', goods_tfidf, elbow_clusters)
+
+                        if wordcloud_option:
+                            panjiva_engineered_subset['tfidf_tokenized_goods'] = goods_shipped_subset.apply(lambda x :spacy_tokenizer(x)) #tokenize the strings
+                            cluster = random.randint(0, n_clusters)
+                            panjiva_engineered_subset_filtered = panjiva_engineered_subset[panjiva_engineered_subset["cluster_tfidfvect"] == cluster]
+                            plotWordcloud(panjiva_engineered_subset_filtered.tfidf_tokenized_goods)
+
 
         if clustering == "KPrototypes":
             st.sidebar.subheader("Model Hyperparameters")
