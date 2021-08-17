@@ -420,9 +420,6 @@ def main():
             ax = sns.barplot(y='Attribute', x='Importance', data=filtered_importances, palette=palette)
             ax.set(ylabel='')
             st.pyplot(fig)
-        
-        def ncomponentsBiplot():
-            return None 
 
         def limeModelExplanation(model, X_train_subset, X_validation_or_holdout, y_validation_or_holdout, y_pred, attributes):
 
@@ -484,10 +481,10 @@ def main():
             st.sidebar.subheader("Error Analysis")
             learning_curves_view = st.sidebar.checkbox("Learning Curves", False, key="learn_curves")
             if dim_reduction == 'None':
-                featimp_biplot_text = "Feature Importances"
+                featimp_text = "Feature Importances"
+                featimp_view = st.sidebar.checkbox(featimp_text, False, key="fimp")
             else:
-                featimp_biplot_text = "Biplot"
-            featimp_biplot_view = st.sidebar.checkbox(featimp_biplot_text, False, key="fimp_bip")
+                pass  
             st.sidebar.subheader("Additional Options")
             validation_show = st.sidebar.checkbox("Show results on Validation Data", False, key="validation")
 
@@ -525,25 +522,21 @@ def main():
                 if learning_curves_view:
                     plotLearningCurves(lr_clf, X_train_subset, y_train_subset)
 
-                if featimp_biplot_view:
-                    if featimp_biplot_text == 'Feature Importances':
-                        st.subheader("Global Feature Importances:")
-                        feature_importances = lr_clf.coef_[0]
-                        num_importances, cat_importances, txt_importances = globalFeatureImportances(feature_importances, attributes)
+                if featimp_view:
+                    st.subheader("Global Feature Importances:")
+                    feature_importances = lr_clf.coef_[0]
+                    num_importances, cat_importances, txt_importances = globalFeatureImportances(feature_importances, attributes)
 
-                        col1, col2, col3 = st.beta_columns(3)
-                        with col1:
-                            globalFeatureImportancesByType(num_importances)
-                        with col2:
-                            globalFeatureImportancesByType(cat_importances)
-                        with col3:
-                            globalFeatureImportancesByType(txt_importances)
+                    col1, col2, col3 = st.beta_columns(3)
+                    with col1:
+                        globalFeatureImportancesByType(num_importances)
+                    with col2:
+                        globalFeatureImportancesByType(cat_importances)
+                    with col3:
+                        globalFeatureImportancesByType(txt_importances)
 
-                        st.subheader("Local Feature Importances for Random Wrong Prediction:")
-                        limeModelExplanation(lr_clf, X_train_subset, lemis_holdout_x, lemis_holdout_y, y_pred_holdout, attributes)
-                    
-                    # elif featimp_biplot_text == 'Biplot':
-
+                    st.subheader("Local Feature Importances for Random Wrong Prediction:")
+                    limeModelExplanation(lr_clf, X_train_subset, lemis_holdout_x, lemis_holdout_y, y_pred_holdout, attributes)
 
         if classifier == 'SGDClassifier':
             st.sidebar.subheader("Model Hyperparameters")
@@ -559,10 +552,10 @@ def main():
             st.sidebar.subheader("Error Analysis")
             learning_curves_view = st.sidebar.checkbox("Learning Curves", False, key="learn_curves")
             if dim_reduction == 'None':
-                featimp_biplot_text = "Feature Importances"
+                featimp_text = "Feature Importances"
+                featimp_view = st.sidebar.checkbox(featimp_text, False, key="fimp")
             else:
-                featimp_biplot_text = "Biplot"
-            featimp_biplot_view = st.sidebar.checkbox(featimp_biplot_text, False, key="fimp_bip")
+                pass  
             st.sidebar.subheader("Additional Options")
             validation_show = st.sidebar.checkbox("Show results on Validation Data", False, key="validation")
 
@@ -601,22 +594,21 @@ def main():
                 if learning_curves_view:
                     plotLearningCurves(sgd_clf, X_train_subset, y_train_subset)
 
-                if featimp_biplot_view:
-                    if featimp_biplot_text == 'Feature Importances':
-                        st.subheader("Global Feature Importances:")
-                        feature_importances = sgd_clf.coef_[0]
-                        num_importances, cat_importances, txt_importances = globalFeatureImportances(feature_importances, attributes)
+                if featimp_view:
+                    st.subheader("Global Feature Importances:")
+                    feature_importances = sgd_clf.coef_[0]
+                    num_importances, cat_importances, txt_importances = globalFeatureImportances(feature_importances, attributes)
 
-                        col1, col2, col3 = st.beta_columns(3)
-                        with col1:
-                            globalFeatureImportancesByType(num_importances)
-                        with col2:
-                            globalFeatureImportancesByType(cat_importances)
-                        with col3:
-                            globalFeatureImportancesByType(txt_importances)
+                    col1, col2, col3 = st.beta_columns(3)
+                    with col1:
+                        globalFeatureImportancesByType(num_importances)
+                    with col2:
+                        globalFeatureImportancesByType(cat_importances)
+                    with col3:
+                        globalFeatureImportancesByType(txt_importances)
 
-                        st.subheader("Local Feature Importances for Random Wrong Prediction:")
-                        limeModelExplanation(sgd_clf, X_train_subset, lemis_holdout_x, lemis_holdout_y, y_pred_holdout, attributes)
+                    st.subheader("Local Feature Importances for Random Wrong Prediction:")
+                    limeModelExplanation(sgd_clf, X_train_subset, lemis_holdout_x, lemis_holdout_y, y_pred_holdout, attributes)
 
         if classifier == 'Decision Tree':
             st.sidebar.subheader("Model Hyperparameters")
@@ -626,10 +618,10 @@ def main():
             st.sidebar.subheader("Error Analysis")
             learning_curves_view = st.sidebar.checkbox("Learning Curves", False, key="learn_curves")
             if dim_reduction == 'None':
-                featimp_biplot_text = "Feature Importances"
+                featimp_text = "Feature Importances"
+                featimp_view = st.sidebar.checkbox(featimp_text, False, key="fimp")
             else:
-                featimp_biplot_text = "Biplot"
-            featimp_biplot_view = st.sidebar.checkbox(featimp_biplot_text, False, key="fimp_bip")
+                pass  
             st.sidebar.subheader("Additional Options")
             validation_show = st.sidebar.checkbox("Show results on Validation Data", False, key="validation")
 
@@ -667,22 +659,21 @@ def main():
                 if learning_curves_view:
                     plotLearningCurves(dt_clf, X_train_subset, y_train_subset)
 
-                if featimp_biplot_view:
-                    if featimp_biplot_text == 'Feature Importances':
-                        st.subheader("Global Feature Importances:")
-                        feature_importances = dt_clf.feature_importances_
-                        num_importances, cat_importances, txt_importances = globalFeatureImportances(feature_importances, attributes, False)
+                if featimp_view:
+                    st.subheader("Global Feature Importances:")
+                    feature_importances = dt_clf.feature_importances_
+                    num_importances, cat_importances, txt_importances = globalFeatureImportances(feature_importances, attributes, False)
 
-                        col1, col2, col3 = st.beta_columns(3)
-                        with col1:
-                            globalFeatureImportancesByType(num_importances, False)
-                        with col2:
-                            globalFeatureImportancesByType(cat_importances, False)
-                        with col3:
-                            globalFeatureImportancesByType(txt_importances, False)
+                    col1, col2, col3 = st.beta_columns(3)
+                    with col1:
+                        globalFeatureImportancesByType(num_importances, False)
+                    with col2:
+                        globalFeatureImportancesByType(cat_importances, False)
+                    with col3:
+                        globalFeatureImportancesByType(txt_importances, False)
 
-                        st.subheader("Local Feature Importances for Random Wrong Prediction:")
-                        limeModelExplanation(dt_clf, X_train_subset, lemis_holdout_x, lemis_holdout_y, y_pred_holdout, attributes) 
+                    st.subheader("Local Feature Importances for Random Wrong Prediction:")
+                    limeModelExplanation(dt_clf, X_train_subset, lemis_holdout_x, lemis_holdout_y, y_pred_holdout, attributes) 
 
         if classifier == 'Random Forest':
             st.sidebar.subheader("Model Hyperparameters")
@@ -693,10 +684,10 @@ def main():
             st.sidebar.subheader("Error Analysis")
             learning_curves_view = st.sidebar.checkbox("Learning Curves", False, key="learn_curves")
             if dim_reduction == 'None':
-                featimp_biplot_text = "Feature Importances"
+                featimp_text = "Feature Importances"
+                featimp_view = st.sidebar.checkbox(featimp_text, False, key="fimp")
             else:
-                featimp_biplot_text = "Biplot"
-            featimp_biplot_view = st.sidebar.checkbox(featimp_biplot_text, False, key="fimp_bip")
+                pass  
             st.sidebar.subheader("Additional Options")
             validation_show = st.sidebar.checkbox("Show results on Validation Data", False, key="validation")
 
@@ -734,22 +725,21 @@ def main():
                 if learning_curves_view:
                     plotLearningCurves(rf_clf, X_train_subset, y_train_subset)
 
-                if featimp_biplot_view:
-                    if featimp_biplot_text == 'Feature Importances':
-                        st.subheader("Global Feature Importances:")
-                        feature_importances = rf_clf.feature_importances_
-                        num_importances, cat_importances, txt_importances = globalFeatureImportances(feature_importances, attributes, False)
+                if featimp_view:
+                    st.subheader("Global Feature Importances:")
+                    feature_importances = rf_clf.feature_importances_
+                    num_importances, cat_importances, txt_importances = globalFeatureImportances(feature_importances, attributes, False)
 
-                        col1, col2, col3 = st.beta_columns(3)
-                        with col1:
-                            globalFeatureImportancesByType(num_importances, False)
-                        with col2:
-                            globalFeatureImportancesByType(cat_importances, False)
-                        with col3:
-                            globalFeatureImportancesByType(txt_importances, False)
+                    col1, col2, col3 = st.beta_columns(3)
+                    with col1:
+                        globalFeatureImportancesByType(num_importances, False)
+                    with col2:
+                        globalFeatureImportancesByType(cat_importances, False)
+                    with col3:
+                        globalFeatureImportancesByType(txt_importances, False)
 
-                        st.subheader("Local Feature Importances for Random Wrong Prediction:")
-                        limeModelExplanation(rf_clf, X_train_subset, lemis_holdout_x, lemis_holdout_y, y_pred_holdout, attributes) 
+                    st.subheader("Local Feature Importances for Random Wrong Prediction:")
+                    limeModelExplanation(rf_clf, X_train_subset, lemis_holdout_x, lemis_holdout_y, y_pred_holdout, attributes) 
 
         if classifier == 'XGBoost':
             st.sidebar.subheader("Model Hyperparameters")
@@ -760,10 +750,10 @@ def main():
             st.sidebar.subheader("Error Analysis")
             learning_curves_view = st.sidebar.checkbox("Learning Curves", False, key="learn_curves")
             if dim_reduction == 'None':
-                featimp_biplot_text = "Feature Importances"
+                featimp_text = "Feature Importances"
+                featimp_view = st.sidebar.checkbox(featimp_text, False, key="fimp")
             else:
-                featimp_biplot_text = "Biplot"
-            featimp_biplot_view = st.sidebar.checkbox(featimp_biplot_text, False, key="fimp_bip")
+                pass            
             st.sidebar.subheader("Additional Options")
             validation_show = st.sidebar.checkbox("Show results on Validation Data", False, key="validation")
 
@@ -802,22 +792,21 @@ def main():
                 if learning_curves_view:
                     plotLearningCurves(xgb_clf, X_train_subset, y_train_subset)
 
-                if featimp_biplot_view:
-                    if featimp_biplot_text == 'Feature Importances':
-                        st.subheader("Global Feature Importances:")
-                        feature_importances = xgb_clf.feature_importances_
-                        num_importances, cat_importances, txt_importances = globalFeatureImportances(feature_importances, attributes, False)
+                if featimp_view:
+                    st.subheader("Global Feature Importances:")
+                    feature_importances = xgb_clf.feature_importances_
+                    num_importances, cat_importances, txt_importances = globalFeatureImportances(feature_importances, attributes, False)
 
-                        col1, col2, col3 = st.beta_columns(3)
-                        with col1:
-                            globalFeatureImportancesByType(num_importances, False)
-                        with col2:
-                            globalFeatureImportancesByType(cat_importances, False)
-                        with col3:
-                            globalFeatureImportancesByType(txt_importances, False)
+                    col1, col2, col3 = st.beta_columns(3)
+                    with col1:
+                        globalFeatureImportancesByType(num_importances, False)
+                    with col2:
+                        globalFeatureImportancesByType(cat_importances, False)
+                    with col3:
+                        globalFeatureImportancesByType(txt_importances, False)
 
-                        st.subheader("Local Feature Importances for Random Wrong Prediction:")
-                        limeModelExplanation(xgb_clf, X_train_subset, lemis_holdout_x, lemis_holdout_y, y_pred_holdout, attributes)
+                    st.subheader("Local Feature Importances for Random Wrong Prediction:")
+                    limeModelExplanation(xgb_clf, X_train_subset, lemis_holdout_x, lemis_holdout_y, y_pred_holdout, attributes)
 
 
     elif option == "Cluster Shipments from Panjiva":
@@ -898,34 +887,35 @@ def main():
             fig = sns.pairplot(panjiva_engineered_subset[num_cols], hue=hue, diag_kind="kde", corner=True)
             st.pyplot(fig)
 
-        def elbowPlot(model_name, goods_shipped_vect):
+        def elbowPlot(model_name, goods_shipped_vect, elbow_clusters):
             if model_name == 'KPrototypes':
 
-                K = range(1,20)
+                K = range(1,elbow_clusters)
                 cost = []
                 for k in K:
-                    model = KPrototypes(n_clusters=k, init = 'Huang')
+                    model = KPrototypes(random_state=RANDOM_SEED, n_clusters=k, init='Huang')
                     model.fit_predict(goods_shipped_vect, categorical = [4,5,6,7,8])
                     cost.append(model.cost_)
 
-                fig, ax = plt.subplot(figsize=(12,12))
-                ax = sns.lineplot(cost)
+                fig, ax = plt.subplots(figsize=(24,10))
+                ax = sns.lineplot(x=cost, y=K)
+                ax.set(xlabel='Values of K', ylabel='Cost', title='The Elbow Method using Cost')
                 st.pyplot(fig)
 
             elif model_name == 'KMeans':
-                K = range(1,100)
+                K = range(1,elbow_clusters)
                 distortions = []
                 inertias = []
                 X = goods_shipped_vect
                 for k in K:
-                    model = KMeans(n_clusters=k)
+                    model = KMeans(random_state=RANDOM_SEED, n_clusters=k)
                     model.fit_predict(X)
                     #distortions.append(sum(np.min(cdist(X, model.cluster_centers_, 'euclidean'), axis=1)) / X.shape[0])
 
                     inertias.append(model.inertia_)
 
-                fig, ax = plt.subplot(figsize=(12,12))
-                ax = sns.lineplot(inertias)
+                fig, ax = plt.subplots(figsize=(12,10))
+                ax = sns.lineplot(x=inertias, y=K)
                 ax.set(xlabel='Values of K', ylabel='Inertia', title='The Elbow Method using Inertia')
                 st.pyplot(fig)
 
@@ -936,14 +926,13 @@ def main():
         
         panjiva_engineered_subset = panjiva_engineered.sample(random_state=RANDOM_SEED, frac=train_subset)
         goods_shipped_subset = goods_shipped[panjiva_engineered_subset.index.tolist()]
-
-        st.sidebar.subheader("Choose Text Vectorizer Method")
-        vectorizer = st.sidebar.multiselect("Text Vectorizer", ["CountVectorizer", "TfidfVectorizer"], default=["CountVectorizer"])
         
         st.sidebar.subheader("Choose Clustering Technique")
         clustering = st.sidebar.selectbox("Model", ("KMeans", "KPrototypes"))
 
         if clustering == "KMeans":
+            st.sidebar.subheader("Choose Text Vectorizer Method")
+            vectorizer = st.sidebar.multiselect("Text Vectorizer", ["CountVectorizer", "TfidfVectorizer"], default=["CountVectorizer"])
             st.sidebar.subheader("Model Hyperparameters")
             n_clusters = st.sidebar.number_input("The number of clusters to form as well as the number of centroids to generate", 2, 20, step=1, value=8, key="clusters")
             init = st.sidebar.radio("Method for initialization", ('k-means++', 'random'), index=0, key="init")
@@ -961,6 +950,7 @@ def main():
                 
                 if "CountVectorizer" in vectorizer:
                     with col1:
+                        st.write("Results with CountVectorizer:")
                         count_vectorizer = CountVectorizer(ngram_range=(1,2), tokenizer=spacy_tokenizer)
                         goods_cv = count_vectorizer.fit_transform(goods_shipped_subset)
                         goods_count_nn = NearestNeighbors(metric='cosine', algorithm='brute')
@@ -976,6 +966,7 @@ def main():
                 
                 if "TfidfVectorizer" in vectorizer:
                     with col2:
+                        st.write("Results with TfidfVectorizer:")
                         tfidf_vectorizer = TfidfVectorizer(input='content', tokenizer=spacy_tokenizer)
                         goods_tfidf = tfidf_vectorizer.fit_transform(goods_shipped_subset)
                         goods_tfidf_nn = NearestNeighbors(metric='cosine', algorithm='brute')
@@ -994,7 +985,9 @@ def main():
             n_clusters = st.sidebar.number_input("The number of clusters to form as well as the number of centroids to generate", 2, 20, step=1, value=8, key="clusters")
             st.sidebar.subheader("Error Analysis")
             elbow_plot_view = st.sidebar.checkbox("Elbow Plot", False, key="elbow_plot")
-            st.sidebar.subheader("Additional Options")
+            if elbow_plot_view:
+                elbow_clusters = st.sidebar.slider("The number of clusters to try out", 1,100, step=1, key="elbow_clusters")
+            # st.sidebar.subheader("Additional Options")
 
             if st.sidebar.button("Run Model", key='run'):
                 st.subheader("KPrototypes Clustering Results")
@@ -1006,10 +999,7 @@ def main():
                 splomchart(panjiva_engineered_subset, "cluster")
                 
                 if elbow_plot_view:
-                    elbowPlot('KPrototypes', panjiva_engineered_subset)
-
-
-
+                    elbowPlot('KPrototypes', panjiva_engineered_subset, elbow_clusters)
 
 if __name__ == '__main__':
     main()
