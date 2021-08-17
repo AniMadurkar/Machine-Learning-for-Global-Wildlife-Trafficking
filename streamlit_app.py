@@ -749,7 +749,7 @@ def main():
             eta = st.sidebar.number_input("Step size shrinkage used in update to prevents overfitting (learning rate)", 0.00, 1.00, step=0.05, value=0.3, key="eta")
             subsample = st.sidebar.number_input("Subsample ratio of the training instances", 0.0, 1.0, step=0.1, value=0.5, key="subsamp")
             max_depth = st.sidebar.number_input("The maximum depth of the tree", 1, 100, step=1, key='max_depth')
-            reg_lambda = st.sidebar.number_input("L2 regularization term on weights", 0.0, 1.0, step=0.1, key='lambda')
+            reg_lambda = st.sidebar.number_input("L2 regularization term on weights", 0.0, 1.0, step=0.1, value=1.0, key='lambda')
             st.sidebar.subheader("Error Analysis")
             learning_curves_view = st.sidebar.checkbox("Learning Curves", False, key="learn_curves")
             if dim_reduction == 'None':
