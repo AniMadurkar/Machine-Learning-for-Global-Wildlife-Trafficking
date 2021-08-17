@@ -353,7 +353,7 @@ def main():
         def plotLearningCurves(model, X_train_subset, y_train_subset):
             
             title = "Learning Curves"
-            cv = ShuffleSplit(n_splits=10, test_size=0.2, random_state=RANDOM_SEED)
+            cv = ShuffleSplit(n_splits=5, test_size=0.2, random_state=RANDOM_SEED)
             fig = constructLearningCurve(model, title, X_train_subset, y_train_subset, cv=cv, n_jobs=4)
             st.pyplot(fig)
 
