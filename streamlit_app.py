@@ -947,7 +947,7 @@ def main():
         st.sidebar.subheader("Percentage of Training Data to Train Model(s) On")
         train_subset = st.sidebar.slider("Percentage of training data to train model on", .1, 100.0, step=.1, value=.1, key="train_subset")
         
-        panjiva_engineered_subset = panjiva_engineered.sample(random_state=RANDOM_SEED, frac=train_subset)
+        panjiva_engineered_subset = panjiva_engineered.sample(random_state=RANDOM_SEED, frac=train_subset/100)
         goods_shipped_subset = goods_shipped[panjiva_engineered_subset.index.tolist()]
         
         st.sidebar.subheader("Choose Clustering Technique")
