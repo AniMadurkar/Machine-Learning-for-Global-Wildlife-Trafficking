@@ -11,12 +11,12 @@ The data used in this application is only about 1% (total, before filtering to s
 
 These instructions will get you a copy of the project up and running on your local machine.
 
-### Get a copy
+### Clone the Repository
 
 Get a copy of this project by simply running the git clone command.
 
 ``` git
-git clone 
+git clone https://github.com/AniMadurkar/Machine-Learning-for-Global-Wildlife-Trafficking.git
 ```
 
 ### Prerequisites
@@ -25,4 +25,12 @@ Before running the project, we have to install all the dependencies from require
 
 ``` pip
 pip install -r requirements.txt
+```
+
+### Hosting
+
+Last, get the project hosted on your local machine with a single command.
+
+``` cmd
+streamlit run streamlit_app.py
 ```
