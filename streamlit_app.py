@@ -935,7 +935,7 @@ def main():
 
             #could loop through this, but not really needed
             w = WordCloud(width=800,height=600,mode='RGBA',background_color='white',max_words=50
-                            ).generate(' '.join(panjiva_engineered_subset_filtered.tokenized_goods_col.sum()))
+                            ).generate(' '.join(panjiva_engineered_subset_filtered[tokenized_goods_col].sum()))
 
             # set the word color to black
             w.recolor(color_func=black_color_func)
