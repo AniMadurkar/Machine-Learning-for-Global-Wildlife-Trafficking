@@ -971,6 +971,7 @@ def main():
             st.sidebar.subheader("Additional Options")
             wordcloud_option = st.sidebar.checkbox("WordCloud for a Cluster", False, key="wordcloud")
 
+            cluster = random.randint(0, n_clusters)
             if st.sidebar.button("Run Model", key='run'):
                 st.subheader("KMeans Clustering Results")
                 kmean_clust = KMeans(n_clusters=n_clusters, init=init)
@@ -994,11 +995,10 @@ def main():
                         if elbow_plot_view:
                             elbowPlot('KMeans', goods_cv, elbow_clusters)
                 
-                        st.subheader("WordCloud for Random Cluster:")
+                        st.subheader(f"WordCloud for Random Cluster {cluster}:")
                         if wordcloud_option:
                             #Tokenize the strings
                             panjiva_engineered_subset['count_tokenized_goods'] = goods_shipped_subset.apply(lambda x :spacy_tokenizer(x))
-                            cluster = random.randint(0, n_clusters)
                             
                             plotWordcloud(panjiva_engineered_subset, "cluster_countvect", cluster, "count_tokenized_goods")
 
@@ -1019,11 +1019,10 @@ def main():
                         if elbow_plot_view:
                             elbowPlot('KMeans', goods_tfidf, elbow_clusters)
 
-                        st.subheader("WordCloud for Random Cluster:")
+                        st.subheader(f"WordCloud for Random Cluster {cluster}:")
                         if wordcloud_option:
                             #Tokenize the strings
                             panjiva_engineered_subset['tfidf_tokenized_goods'] = goods_shipped_subset.apply(lambda x :spacy_tokenizer(x))
-                            cluster = random.randint(0, n_clusters)
 
                             plotWordcloud(panjiva_engineered_subset, "cluster_tfidfvect", cluster, "tfidf_tokenized_goods")
 
