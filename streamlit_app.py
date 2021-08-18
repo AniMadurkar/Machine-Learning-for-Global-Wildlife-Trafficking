@@ -845,11 +845,8 @@ def main():
             panjiva['lading_cat'] = panjiva['port of lading'].astype('category').cat.codes
             panjiva['unlading_cat'] = panjiva['port of unlading'].astype('category').cat.codes
             panjiva['consignee_cat'] = panjiva['consignee'].astype('category').cat.codes
-            #panjiva['shipper_cat'] = panjiva['shipper'].astype('category').cat.codes
             panjiva['transport_cat'] = panjiva['transport method'].astype('category').cat.codes
-            #panjiva['goods_cat'] = panjiva['goods shipped'].astype('category').cat.codes
             panjiva['container_cat'] = panjiva['is containerized'].astype('category').cat.codes
-            #panjiva['trade_dir_cat'] = panjiva['data source trade direction'].astype('category').cat.codes
             panjiva['hscode_cat'] = panjiva['hscode'].astype('category').cat.codes
             panjiva_engineered = panjiva[['volume (teu)', 'weight (kg)','miss_perc', 
                                             'value (usd)', 'hscode_cat', 'lading_cat', 
@@ -961,6 +958,7 @@ def main():
         clustering = st.sidebar.selectbox("Model", ("KMeans", "KPrototypes"))
 
         if clustering == "KMeans":
+            st.sidebar.write("This clustering is done only on the goods shipped column")
             st.sidebar.subheader("Choose Text Vectorizer Method")
             vectorizer = st.sidebar.multiselect("Text Vectorizer", ["CountVectorizer", "TfidfVectorizer"], default=["CountVectorizer"])
             st.sidebar.subheader("Model Hyperparameters")
@@ -975,7 +973,7 @@ def main():
 
             if st.sidebar.button("Run Model", key='run'):
                 st.subheader("KMeans Clustering Results")
-                kmean_clust = KMeans(n_clusters=n_clusters, init=init) #5 clusters determined by elbow
+                kmean_clust = KMeans(n_clusters=n_clusters, init=init)
                 
                 col1, col2 = st.beta_columns(2)
                 
@@ -992,11 +990,14 @@ def main():
 
                         splomchart(panjiva_engineered_subset, "cluster_countvect")
 
+                        st.subheader("Elbow Plot:")
                         if elbow_plot_view:
                             elbowPlot('KMeans', goods_cv, elbow_clusters)
                 
+                        st.subheader("WordCloud for Random Cluster:")
                         if wordcloud_option:
-                            panjiva_engineered_subset['count_tokenized_goods'] = goods_shipped_subset.apply(lambda x :spacy_tokenizer(x)) #tokenize the strings
+                            #Tokenize the strings
+                            panjiva_engineered_subset['count_tokenized_goods'] = goods_shipped_subset.apply(lambda x :spacy_tokenizer(x))
                             cluster = random.randint(0, n_clusters)
                             
                             plotWordcloud(panjiva_engineered_subset, "cluster_countvect", cluster, "count_tokenized_goods")
@@ -1014,34 +1015,38 @@ def main():
 
                         splomchart(panjiva_engineered_subset, "cluster_tfidfvect")
 
+                        st.subheader("Elbow Plot:")
                         if elbow_plot_view:
                             elbowPlot('KMeans', goods_tfidf, elbow_clusters)
 
+                        st.subheader("WordCloud for Random Cluster:")
                         if wordcloud_option:
-                            panjiva_engineered_subset['tfidf_tokenized_goods'] = goods_shipped_subset.apply(lambda x :spacy_tokenizer(x)) #tokenize the strings
+                            #Tokenize the strings
+                            panjiva_engineered_subset['tfidf_tokenized_goods'] = goods_shipped_subset.apply(lambda x :spacy_tokenizer(x))
                             cluster = random.randint(0, n_clusters)
 
                             plotWordcloud(panjiva_engineered_subset, "cluster_tfidfvect", cluster, "tfidf_tokenized_goods")
 
 
         if clustering == "KPrototypes":
+            st.sidebar.write("This clustering is done on all columns with mixed data types")
             st.sidebar.subheader("Model Hyperparameters")
             n_clusters = st.sidebar.number_input("The number of clusters to form as well as the number of centroids to generate", 2, 20, step=1, value=8, key="clusters")
             st.sidebar.subheader("Error Analysis")
             elbow_plot_view = st.sidebar.checkbox("Elbow Plot", False, key="elbow_plot")
             if elbow_plot_view:
                 elbow_clusters = st.sidebar.slider("The number of clusters to try out", 1,100, step=1, key="elbow_clusters")
-            # st.sidebar.subheader("Additional Options")
 
             if st.sidebar.button("Run Model", key='run'):
                 st.subheader("KPrototypes Clustering Results")
-                kprot_clust = KPrototypes(n_clusters=n_clusters, init='Huang') #5 clusters determined by elbow
+                kprot_clust = KPrototypes(n_clusters=n_clusters, init='Huang')
                 pred = kprot_clust.fit_predict(panjiva_engineered_subset, categorical = [4,5,6,7,8])
 
                 panjiva_engineered_subset['cluster'] = pred
                 
                 splomchart(panjiva_engineered_subset, "cluster")
                 
+                st.subheader("Elbow Plot:")
                 if elbow_plot_view:
                     elbowPlot('KPrototypes', panjiva_engineered_subset, elbow_clusters)
 
