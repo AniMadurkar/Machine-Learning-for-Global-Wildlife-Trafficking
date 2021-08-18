@@ -41,7 +41,8 @@ streamlit run streamlit_app.py
 
 ### Predicting Action/Disposition from LEMIS Demo
 
-https://user-images.githubusercontent.com/49261829/129824985-1887d74f-0160-48d9-a035-ef4f2757ffc5.mov
+https://user-images.githubusercontent.com/49261829/129825120-34f4478e-5ef2-4c94-a223-a7f4e140da8b.mov
 
 ### Clustering Shipments from Panjiva Demo
 
+https://user-images.githubusercontent.com/49261829/129825356-75dc75a8-4c5d-47e4-9aff-9febb4ee8f54.mov
