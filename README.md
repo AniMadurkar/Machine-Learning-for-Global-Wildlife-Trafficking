@@ -36,6 +36,6 @@ streamlit run streamlit_app.py
 ```
 
 <p align=center>
-    <img src="./img/mainpage.PNG" width="551.1" height="278.7">
+    <img src="./img/mainpage.png" width="551.1" height="278.7">
 </p>
 
