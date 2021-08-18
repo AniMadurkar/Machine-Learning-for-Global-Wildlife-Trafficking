@@ -64,3 +64,8 @@ python panjiva.py
 ```
 
 These have code at the bottom to output a sample of each cleaned file. If you comment out the lines where you're getting the sample, you can output the full cleaned dataframe to csv.
+
+## Future Ideas
+- Provide functionality to view the predictions in an easier way
+- Add filtering and visualizations in the main page to contextually evaluate the predictions
+- Incorporate inutitive ways to add dates in the model (will need further discussion with our stakeholders to properly handle this)
