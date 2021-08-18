@@ -48,3 +48,19 @@ https://user-images.githubusercontent.com/49261829/129825120-34f4478e-5ef2-4c94-
 ### Clustering Shipments from Panjiva Demo
 
 https://user-images.githubusercontent.com/49261829/129825356-75dc75a8-4c5d-47e4-9aff-9febb4ee8f54.mov
+
+
+### Running the ETL Scripts
+
+If you go to downloading the full LEMIS dataset or happen to have a Panjiva subscription and download a bunch of files, you can use our ETL scripts to help clean each of them as well. All you want to do is set up your folder structure so that in the folder with the scripts, you have two additional folders:
+1. Lemis Data
+2. Panjiva Data
+
+Drop your files in each of these respectively and then you can run the scripts as such:
+
+``` python
+python lemis.py
+python panjiva.py
+```
+
+These have code at the bottom to output a sample of each cleaned file. If you comment out the lines where you're getting the sample, you can output the full cleaned dataframe to csv.
