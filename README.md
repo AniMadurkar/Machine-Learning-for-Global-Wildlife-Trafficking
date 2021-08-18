@@ -1,4 +1,4 @@
-# Machine-Learning-for-Global-Wildlife-Trafficking
+# Machine Learning for Global Wildlife Trafficking
 
 This application is an extensive modeling approach for Wildlife Trafficking (live animals and wildlife products) importing via shipments into the US. You can access the application here: 
 [Machine Learning for Global Wildlife Trafficking](https://share.streamlit.io/AniMadurkar/Machine-Learning-for-Global-Wildlife-Trafficking/main/streamlit_app.py)
