@@ -56,7 +56,7 @@ If you go to downloading the full LEMIS dataset or happen to have a Panjiva subs
 1. Lemis Data
 2. Panjiva Data
 
-Drop your files in each of these respectively and then you can run the scripts as such:
+Drop only the data files in each of these respectively and then you can run the scripts as such:
 
 ``` python
 python lemis.py
