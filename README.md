@@ -34,3 +34,8 @@ Last, get the project hosted on your local machine with a single command.
 ``` cmd
 streamlit run streamlit_app.py
 ```
+
+<p align=center>
+    <img src="./img/mainpage.PNG" width="551.1" height="278.7">
+</p>
+
