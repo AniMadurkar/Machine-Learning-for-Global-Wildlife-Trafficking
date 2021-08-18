@@ -40,17 +40,17 @@ streamlit run streamlit_app.py
 </p>
 
 
-### Predicting Action/Disposition from LEMIS Demo
+## Predicting Action/Disposition from LEMIS Demo
 
 https://user-images.githubusercontent.com/49261829/129825120-34f4478e-5ef2-4c94-a223-a7f4e140da8b.mov
 
 
-### Clustering Shipments from Panjiva Demo
+## Clustering Shipments from Panjiva Demo
 
 https://user-images.githubusercontent.com/49261829/129825356-75dc75a8-4c5d-47e4-9aff-9febb4ee8f54.mov
 
 
-### Running the ETL Scripts
+## Running the ETL Scripts
 
 If you go to downloading the full LEMIS dataset or happen to have a Panjiva subscription and download a bunch of files, you can use our ETL scripts to help clean each of them as well. All you want to do is set up your folder structure so that in the folder with the scripts, you have two additional folders:
 1. Lemis Data
