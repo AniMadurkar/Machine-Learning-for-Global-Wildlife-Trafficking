@@ -931,11 +931,13 @@ def main():
         def black_color_func(word, font_size, position,orientation,random_state=None, **kwargs):
             return("hsl(0,100%, 1%)")
 
-        def plotWordcloud(panjiva_engineered_subset_filtered, tokenized_goods_col):
+        def plotWordcloud(panjiva_engineered_subset, cluster_col, cluster, tokenized_goods_col):
+            
+            df = panjiva_engineered_subset[panjiva_engineered_subset[cluster_col] == cluster]
 
             #could loop through this, but not really needed
             w = WordCloud(width=800,height=600,mode='RGBA',background_color='white',max_words=50
-                            ).generate(' '.join(panjiva_engineered_subset_filtered[tokenized_goods_col].sum()))
+                            ).generate(' '.join(df[tokenized_goods_col].sum()))
 
             # set the word color to black
             w.recolor(color_func=black_color_func)
@@ -996,8 +998,8 @@ def main():
                         if wordcloud_option:
                             panjiva_engineered_subset['count_tokenized_goods'] = goods_shipped_subset.apply(lambda x :spacy_tokenizer(x)) #tokenize the strings
                             cluster = random.randint(0, n_clusters)
-                            panjiva_engineered_subset_filtered = panjiva_engineered_subset[panjiva_engineered_subset["cluster_countvect"] == cluster]
-                            plotWordcloud(panjiva_engineered_subset_filtered, "count_tokenized_goods")
+                            
+                            plotWordcloud(panjiva_engineered_subset, "cluster_countvect", cluster, "count_tokenized_goods")
 
                 if "TfidfVectorizer" in vectorizer:
                     with col2:
@@ -1018,8 +1020,8 @@ def main():
                         if wordcloud_option:
                             panjiva_engineered_subset['tfidf_tokenized_goods'] = goods_shipped_subset.apply(lambda x :spacy_tokenizer(x)) #tokenize the strings
                             cluster = random.randint(0, n_clusters)
-                            panjiva_engineered_subset_filtered = panjiva_engineered_subset[panjiva_engineered_subset["cluster_tfidfvect"] == cluster]
-                            plotWordcloud(panjiva_engineered_subset_filtered, "tfidf_tokenized_goods")
+
+                            plotWordcloud(panjiva_engineered_subset, "cluster_tfidfvect", cluster, "tfidf_tokenized_goods")
 
 
         if clustering == "KPrototypes":
