@@ -77,7 +77,7 @@ def main():
         if dataset == 'LEMIS':
             #Read in data
             #Change filename below if the whole file is desired
-            filename= 'lemis_cleaned_sample.csv'
+            filename= 'lemis_cleaned.csv'
             df = pd.read_csv(filename)
 
             #Creating one target column that has values for the disposition where the action was 'Refused' or the action was null
@@ -85,7 +85,7 @@ def main():
         elif dataset == 'Panjiva':
             #Read in data
             #Change filename below if the whole file is desired
-            filename= 'panjiva_cleaned_sample.csv'
+            filename= 'panjiva_cleaned.csv'
             df = pd.read_csv(filename)
             #Get a list of the columns with more than 800,000 nulls and drop them. Some human decision making used here. Keep the ones with a lot of nulls,
             #but drop the ones where nearly all rows have null. Probably should be based on a % into an auto tool. Although, with the miss_perc feature 
@@ -972,6 +972,7 @@ def main():
             wordcloud_option = st.sidebar.checkbox("WordCloud for a Cluster", False, key="wordcloud")
 
             cluster = random.randint(0, n_clusters)
+            cluster = cluster-1
             if st.sidebar.button("Run Model", key='run'):
                 st.subheader("KMeans Clustering Results")
                 kmean_clust = KMeans(n_clusters=n_clusters, init=init)
