@@ -77,7 +77,7 @@ def main():
         if dataset == 'LEMIS':
             #Read in data
             #Change filename below if the whole file is desired
-            filename= 'lemis_cleaned.csv'
+            filename= 'lemis_cleaned_sample.csv'
             df = pd.read_csv(filename)
 
             #Creating one target column that has values for the disposition where the action was 'Refused' or the action was null
@@ -85,7 +85,7 @@ def main():
         elif dataset == 'Panjiva':
             #Read in data
             #Change filename below if the whole file is desired
-            filename= 'panjiva_cleaned.csv'
+            filename= 'panjiva_cleaned_sample.csv'
             df = pd.read_csv(filename)
             #Get a list of the columns with more than 800,000 nulls and drop them. Some human decision making used here. Keep the ones with a lot of nulls,
             #but drop the ones where nearly all rows have null. Probably should be based on a % into an auto tool. Although, with the miss_perc feature 
