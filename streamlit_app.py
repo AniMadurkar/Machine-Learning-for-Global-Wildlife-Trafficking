@@ -77,7 +77,7 @@ def main():
         if dataset == 'LEMIS':
             #Read in data
             #Change filename below if the whole file is desired
-            filename= 'lemis_cleaned_sample.csv'
+            filename= 'lemis_cleaned.csv'
             df = pd.read_csv(filename)
 
             #Creating one target column that has values for the disposition where the action was 'Refused' or the action was null
@@ -85,7 +85,7 @@ def main():
         elif dataset == 'Panjiva':
             #Read in data
             #Change filename below if the whole file is desired
-            filename= 'panjiva_cleaned_sample.csv'
+            filename= 'panjiva_cleaned.csv'
             df = pd.read_csv(filename)
             #Get a list of the columns with more than 800,000 nulls and drop them. Some human decision making used here. Keep the ones with a lot of nulls,
             #but drop the ones where nearly all rows have null. Probably should be based on a % into an auto tool. Although, with the miss_perc feature 
@@ -992,12 +992,12 @@ def main():
 
                         splomchart(panjiva_engineered_subset, "cluster_countvect")
 
-                        st.subheader("Elbow Plot:")
                         if elbow_plot_view:
+                            st.subheader("Elbow Plot:")
                             elbowPlot('KMeans', goods_cv, elbow_clusters)
                 
-                        st.subheader(f"WordCloud for Random Cluster {cluster}:")
                         if wordcloud_option:
+                            st.subheader(f"WordCloud for Random Cluster {cluster}:")
                             #Tokenize the strings
                             panjiva_engineered_subset['count_tokenized_goods'] = goods_shipped_subset.apply(lambda x :spacy_tokenizer(x))
                             
@@ -1016,12 +1016,12 @@ def main():
 
                         splomchart(panjiva_engineered_subset, "cluster_tfidfvect")
 
-                        st.subheader("Elbow Plot:")
                         if elbow_plot_view:
+                            st.subheader("Elbow Plot:")
                             elbowPlot('KMeans', goods_tfidf, elbow_clusters)
 
-                        st.subheader(f"WordCloud for Random Cluster {cluster}:")
                         if wordcloud_option:
+                            st.subheader(f"WordCloud for Random Cluster {cluster}:")
                             #Tokenize the strings
                             panjiva_engineered_subset['tfidf_tokenized_goods'] = goods_shipped_subset.apply(lambda x :spacy_tokenizer(x))
 
@@ -1046,8 +1046,8 @@ def main():
                 
                 splomchart(panjiva_engineered_subset, "cluster")
                 
-                st.subheader("Elbow Plot:")
                 if elbow_plot_view:
+                    st.subheader("Elbow Plot:")
                     elbowPlot('KPrototypes', panjiva_engineered_subset, elbow_clusters)
 
         st.markdown("This data set was manually downloaded through a paid [Panjiva](https://panjiva.com/) account \
