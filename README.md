@@ -1,7 +1,7 @@
 # Machine Learning for Global Wildlife Trafficking
 
-** This is the Machine Learning portion of a larger project. You can read the entire project here: [Data Science for Global Wildlife Trafficking blog Post](https://animadurkar.medium.com/data-science-for-global-wildlife-trafficking-2faffa765b19)
-You can find the Tableau Dashboards here:
+** This is the Machine Learning portion of a larger project. You can read the entire project here: [Data Science for Global Wildlife Trafficking blog Post](https://animadurkar.medium.com/data-science-for-global-wildlife-trafficking-2faffa765b19).
+The Tableau Dashboards can be found here:
 1. [LEMIS](https://public.tableau.com/app/profile/raya.abourjeily/viz/LEMIS/Overview)
 2. [Panjiva](https://public.tableau.com/app/profile/raya.abourjeily/viz/Panjiva/Overview)
 
