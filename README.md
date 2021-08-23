@@ -2,8 +2,8 @@
 
 ** This is the Machine Learning portion of a larger project. You can read the entire project here: [Data Science for Global Wildlife Trafficking blog Post](https://animadurkar.medium.com/data-science-for-global-wildlife-trafficking-2faffa765b19)
 You can find the Tableau Dashboards here:
-[LEMIS](https://public.tableau.com/app/profile/raya.abourjeily/viz/LEMIS/Overview)
-[Panjiva](https://public.tableau.com/app/profile/raya.abourjeily/viz/Panjiva/Overview)
+1. [LEMIS](https://public.tableau.com/app/profile/raya.abourjeily/viz/LEMIS/Overview)
+2. [Panjiva](https://public.tableau.com/app/profile/raya.abourjeily/viz/Panjiva/Overview)
 
 This application is an extensive modeling approach for Wildlife Trafficking (live animals and wildlife products) importing via shipments into the US. You can access the application here: 
 [Machine Learning for Global Wildlife Trafficking](https://share.streamlit.io/AniMadurkar/Machine-Learning-for-Global-Wildlife-Trafficking/main/streamlit_app.py)
