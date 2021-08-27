@@ -58,6 +58,8 @@ def main():
 
     #Main title on home page
     st.title("Machine Learning for Global Wildlife Trafficking")
+    st.markdown("This application was designed by Raya Abourjeily, Dr. Neil Carter, Alex Hardy, Ani Madurkar (all authors contributed to this equally). \
+                 You can find Dr. Carter here: https://www.coexistencegroup.com/")
     #Main option on top of sidebar
     st.sidebar.markdown("What would you like to do?")
     option = st.sidebar.radio("", ("Predict Action/Disposition from LEMIS", "Cluster Shipments from Panjiva"), index=0, key="option")
